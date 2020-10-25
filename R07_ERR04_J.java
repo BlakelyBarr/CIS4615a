@@ -2,10 +2,10 @@
  *  Compilation:  javac R07_ERR04_J.java
  *  Execution:    java R07_ERR04_J
  *
- *  The finally block completes abruptly because of a return statement in the block:
+ *  removes the return statement from the finally block:
  *
  * Revision History:
- * - computes and returns the sum of the absolute value of parameters x and y
+ * - removes the return statement from the finally block:
  *  % java R07_ERR04_J
  *  %
  *
@@ -13,8 +13,7 @@
 
 public class R07_ERR04_J {
     
-    // The finally block completes abruptly because of a return statement in the block:
-    // The IllegalStateException is suppressed by the abrupt completion of the finally block caused by the return statement
+    // solution removes the return statement from the finally block:
     
     class TryFinally {
       private static boolean doLogic() {
@@ -22,8 +21,9 @@ public class R07_ERR04_J {
           throw new IllegalStateException();
         } finally {
           System.out.println("logic done");
-          return true;
         }
+        // Any return statements must go here;
+        // applicable only when exception is thrown conditionally
       }
     }
 

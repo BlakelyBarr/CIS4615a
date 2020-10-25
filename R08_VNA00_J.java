@@ -2,10 +2,10 @@
  *  Compilation:  javac R08_VNA00_J.java
  *  Execution:    java R08_VNA00_J
  *
- *   uses a shutdown() method to set the nonvolatile done flag that is checked in the run() method
+ *   In this compliant solution, the done flag is declared volatile to ensure that writes are visible to other threads
  *
  * Revision History:
- * - computes and returns the sum of the absolute value of parameters x and y
+ * - In this compliant solution, the done flag is declared volatile to ensure that writes are visible to other threads
  *  % java R08_VNA00_J
  *  %
  *
@@ -13,11 +13,10 @@
 
 public class R08_VNA00_J {
     
-    // uses a shutdown() method to set the nonvolatile done flag that is checked in the run() method
-    // If one thread invokes the shutdown() method to set the flag, a second thread might not observe that change
+    // In this compliant solution, the done flag is declared volatile to ensure that writes are visible to other threads
     
     final class ControlledStop implements Runnable {
-      private boolean done = false;
+      private volatile boolean done = false;
 
       @Override public void run() {
         while (!done) {
