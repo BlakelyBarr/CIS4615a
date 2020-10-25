@@ -13,14 +13,18 @@
 
 public class R06_MET01_J {
     
-    // it can produce incorrect results because of integer overflow
+    // validates the method arguments by ensuring that values passed to Math.abs() exclude Integer.MIN_VALUE
+    // and also by checking for integer overflow
     
-      public static int getAbsAdd(int x, int y) {
-      assert x != Integer.MIN_VALUE;
-      assert y != Integer.MIN_VALUE;
+    public static int getAbsAdd(int x, int y) {
+      if (x == Integer.MIN_VALUE || y == Integer.MIN_VALUE) {
+        throw new IllegalArgumentException();
+      }
       int absX = Math.abs(x);
       int absY = Math.abs(y);
-      assert (absX <= Integer.MAX_VALUE - absY);
+      if (absX > Integer.MAX_VALUE - absY) {
+        throw new IllegalArgumentException();
+      }
       return absX + absY;
     }
 
